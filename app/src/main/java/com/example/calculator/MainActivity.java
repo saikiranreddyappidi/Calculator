@@ -24,8 +24,8 @@ class EvaluateString
             if (tokens[i] >= '0' &&
                     tokens[i] <= '9')
             {
-                StringBuffer sbuf = new
-                        StringBuffer();
+                StringBuilder sbuf = new
+                        StringBuilder();
                 while (i < tokens.length &&
                         tokens[i] >= '0' &&
                         tokens[i] <= '9')
@@ -75,11 +75,8 @@ class EvaluateString
     {
         if (op2 == '(' || op2 == ')')
             return false;
-        if ((op1 == '*' || op1 == '/') &&
-                (op2 == '+' || op2 == '-'))
-            return false;
-        else
-            return true;
+        return (op1 != '*' && op1 != '/') ||
+                (op2 != '+' && op2 != '-');
     }
     public static int applyOp(char op,
                               int b, int a)
