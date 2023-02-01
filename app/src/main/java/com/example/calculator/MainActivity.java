@@ -2,11 +2,13 @@ package com.example.calculator;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.TextView;
+import android.widget.ToggleButton;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.util.Scanner;
 import java.util.Stack;
 
 class EvaluateString
@@ -127,11 +129,11 @@ class construct{
         try{
             int i=arr.length()-1;
             if(arr.charAt(i)=='+'||arr.charAt(i)=='-'||arr.charAt(i)=='*'||arr.charAt(i)=='/'||arr.charAt(i)=='%'||arr.charAt(i)=='.'||
-                    (arr.charAt(i)=='0' &&arr.charAt(i-1)=='/')
+                    (arr.charAt(i)=='0' &&(arr.charAt(i-1)=='/'||arr.charAt(i-1)=='%'))
             )
             {
                 System.out.println("Invalid Expression");
-                return String.valueOf(result);
+                return "Invalid Expression";
             }
             result = EvaluateString.evaluate(arr);
             return String.valueOf(result);
@@ -144,6 +146,7 @@ class construct{
 }
 public class MainActivity extends AppCompatActivity {
     TextView input, output;
+    ToggleButton toggle;
     construct str = new construct();
 
     @Override
