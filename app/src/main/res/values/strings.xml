@@ -30,4 +30,7 @@
     <string name="minus0">-</string>
     <string name="plus0">+</string>
     <string name="equalTo">=</string>
+    <string name="b">b</string>
+    <string name="a">a</string>
+    <string name="c">C</string>
 </resources>

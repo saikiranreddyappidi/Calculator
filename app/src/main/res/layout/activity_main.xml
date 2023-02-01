@@ -70,9 +70,10 @@
                 android:backgroundTint="#0d0d0d"
                 android:onClick="clear"
                 android:padding="0sp"
-                android:text="C"
+                android:text="@string/c"
+                android:shadowColor="@color/black"
                 android:textColor="@color/design_default_color_error"
-                android:textSize="52sp"
+                android:textSize="32sp"
                 android:layout_marginTop="10sp"
                 android:layout_marginBottom="10sp"
                 android:layout_marginRight="10sp"
@@ -131,24 +132,24 @@
                 android:layout_gravity="fill_vertical"/>
 
 
-            <Button
-                android:id="@+id/button_00"
+            <ToggleButton
+                android:id="@+id/togglebutton"
                 android:layout_width="65sp"
-                android:layout_height="13sp"
-                android:layout_weight="1"
-                android:background="@drawable/rounded_corner"
-                android:onClick="doubleZero"
-                android:padding="0sp"
-                android:text="@string/_00"
-                android:textColor="#000000"
-                android:textSize="24sp"
-                android:layout_marginTop="10sp"
-                android:layout_marginBottom="10sp"
-                android:layout_marginRight="10sp"
+                android:layout_height="11sp"
+                android:layout_gravity="fill_vertical"
                 android:layout_marginLeft="10sp"
-                android:layout_gravity="fill_vertical"/>
-
-
+                android:layout_marginTop="10sp"
+                android:layout_marginRight="10sp"
+                android:layout_marginBottom="10sp"
+                android:layout_weight="1"
+                android:padding="0sp"
+                android:textColor="#000000"
+                android:backgroundTint="#66ffb3"
+                android:background="@drawable/cancel_button"
+                android:textOff="@string/b"
+                android:textOn="@string/a"
+                android:checked="false"
+                android:textSize="24sp" />
         </LinearLayout>
 
         <LinearLayout

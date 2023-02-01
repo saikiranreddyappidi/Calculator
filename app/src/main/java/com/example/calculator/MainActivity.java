@@ -3,7 +3,6 @@ package com.example.calculator;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CompoundButton;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
@@ -22,24 +21,24 @@ class EvaluateString
             Stack<Double> valtmp = new Stack<Double>();
             input = "0" + input;
             input = input.replaceAll("-","+-");
-            String temp = "";
+            StringBuilder temp = new StringBuilder();
             for (int i = 0;i < input.length();i++)
             {
                 char ch = input.charAt(i);
                 if (ch == '-')
-                    temp = "-" + temp;
-                else if (ch != '+' &&  ch != '*' && ch != '/' && ch!='%')
-                    temp = temp + ch;
+                    temp.insert(0, "-");
+                else if (ch != '+' &&  ch != '*' && ch != '/' && ch!='%' && ch!='&' && ch!='|' && ch!='^' && ch!='~')
+                    temp.append(ch);
                 else
                 {
-                    val.push(Double.parseDouble(temp));
+                    val.push(Double.parseDouble(temp.toString()));
                     op.push((int)ch);
-                    temp = "";
+                    temp = new StringBuilder();
                 }
             }
-            val.push(Double.parseDouble(temp));
-            char[] operators = {'/','*','%','+'};
-            for (int i = 0; i < 4; i++)
+            val.push(Double.parseDouble(temp.toString()));
+            char[] operators = {'/','*','%','+','&','|','^','~'};
+            for (int i = 0; i < 8; i++)
             {
                 boolean it = false;
                 while (!op.isEmpty())
@@ -82,8 +81,28 @@ class EvaluateString
                             it = true;
                             break;
                         }
-                        else {
+                        else if(i==3){
                             valtmp.push(v2 + v1);
+                            it = true;
+                            break;
+                        }
+                        else if(i==4){
+                            valtmp.push((double) ((int)v2 & (int)v1));
+                            it = true;
+                            break;
+                        }
+                        else if(i==5){
+                            valtmp.push((double) ((int)v2 | (int)v1));
+                            it = true;
+                            break;
+                        }
+                        else if(i==6){
+                            valtmp.push((double) ((int)v2 ^ (int)v1));
+                            it = true;
+                            break;
+                        }
+                        else {
+                            valtmp.push((double) (~ (int)v1));
                             it = true;
                             break;
                         }
@@ -107,7 +126,7 @@ class EvaluateString
             return value;
         }
         catch (Exception e){
-            System.out.println("Invalid Expression");
+            System.out.println("Invalid Expression Evaluation"+e.getMessage());
             return 0.00;
         }
     }
@@ -128,18 +147,19 @@ class construct{
     public String ans() {
         try{
             int i=arr.length()-1;
-            if(arr.charAt(i)=='+'||arr.charAt(i)=='-'||arr.charAt(i)=='*'||arr.charAt(i)=='/'||arr.charAt(i)=='%'||arr.charAt(i)=='.'||
+            if(arr.charAt(i)=='+'||arr.charAt(i)=='-'||arr.charAt(i)=='*'||arr.charAt(i)=='/'||
+                    arr.charAt(i)=='%'||arr.charAt(i)=='.'||arr.charAt(i)=='&'||arr.charAt(i)=='|'||arr.charAt(i)=='^'||
                     (arr.charAt(i)=='0' &&(arr.charAt(i-1)=='/'||arr.charAt(i-1)=='%'))
             )
             {
-                System.out.println("Invalid Expression");
+                System.out.println("Invalid Expression constructor");
                 return "Invalid Expression";
             }
             result = EvaluateString.evaluate(arr);
             return String.valueOf(result);
         }
         catch (Exception e){
-            System.out.println("Invalid Expression an exception");
+            System.out.println("Invalid Expression an exception constructor");
             return String.valueOf(result);
         }
     }
@@ -148,6 +168,7 @@ public class MainActivity extends AppCompatActivity {
     TextView input, output;
     ToggleButton toggle;
     construct str = new construct();
+    boolean toggleState = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -155,6 +176,31 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         input = findViewById(R.id.input);
         output = findViewById(R.id.output);
+        toggle = findViewById(R.id.togglebutton);
+        toggle.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            Button plus = findViewById(R.id.button_add);
+            Button minus = findViewById(R.id.button_subtract);
+            Button multiply = findViewById(R.id.button_multiply);
+            Button divide = findViewById(R.id.button_divide);
+            Button dot = findViewById(R.id.button_dot);
+            if (isChecked) {
+                plus.setText("|");
+                minus.setText("&");
+                multiply.setText("^");
+                divide.setText("~");
+                toggleState = true;
+                dot.setText("N/A");
+
+            }
+            else{
+                plus.setText("+");
+                minus.setText("-");
+                multiply.setText("*");
+                divide.setText("/");
+                dot.setText(".");
+                toggleState = false;
+            }
+        });
     }
     public void one(View view) {
         input.setText(str.extend('1'));
@@ -207,22 +253,35 @@ public class MainActivity extends AppCompatActivity {
         output.setText("0");
     }
     public void plus(View view) {
-        input.setText(str.extend('+'));
+        if(toggleState)
+            input.setText(str.extend('|'));
+        else
+            input.setText(str.extend('+'));
     }
     public void minus(View view) {
-        input.setText(str.extend('-'));
+        if (toggleState)
+            input.setText(str.extend('&'));
+        else
+            input.setText(str.extend('-'));
     }
     public void multiply(View view) {
-        input.setText(str.extend('*'));
+        if (toggleState)
+            input.setText(str.extend('^'));
+        else
+            input.setText(str.extend('*'));
     }
     public void divide(View view) {
-        input.setText(str.extend('/'));
+        if (toggleState)
+            input.setText(str.extend('~'));
+        else
+            input.setText(str.extend('/'));
     }
     public void modulus(View view) {
         input.setText(str.extend('%'));
     }
     public void dot(View view) {
-        input.setText(str.extend('.'));
+        if (!toggleState)
+            input.setText(str.extend('.'));
     }
     public void backspace(View view) {
         if(str.arr.length()>0) {
