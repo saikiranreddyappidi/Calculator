@@ -4,14 +4,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="#1a1a1a"
+    android:orientation="vertical"
     android:padding="10sp">
-
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="170sp"
+        android:layout_height="133dp"
         android:layout_weight="1"
         android:orientation="vertical"
         android:padding="10sp">
@@ -21,21 +20,21 @@
             android:layout_width="match_parent"
             android:layout_height="51sp"
             android:layout_weight="1"
+            android:autoSizeMaxTextSize="48sp"
+            android:autoSizeMinTextSize="24sp"
+            android:autoSizeStepGranularity="2sp"
+            android:autoSizeTextType="uniform"
             android:gravity="bottom|end"
             android:text="@string/_0"
             android:textColor="@color/white"
-            android:textSize="24sp"
-            android:autoSizeTextType="uniform"
-            android:autoSizeMinTextSize="24sp"
-            android:autoSizeMaxTextSize="68sp"
-            android:autoSizeStepGranularity="2sp" />
+            android:textSize="24sp" />
 
         <TextView
             android:id="@+id/output"
             android:layout_width="match_parent"
             android:layout_height="14sp"
             android:layout_weight="0.5"
-            android:autoSizeMaxTextSize="54sp"
+            android:autoSizeMaxTextSize="34sp"
             android:autoSizeMinTextSize="12sp"
             android:autoSizeStepGranularity="2sp"
             android:autoSizeTextType="uniform"
@@ -45,14 +44,14 @@
             android:textSize="34sp" />
 
 
-
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:layout_weight="2.5"
-        android:orientation="horizontal">
+        android:background="#2E2D2D"
+        android:baselineAligned="false">
 
         <LinearLayout
             android:layout_width="0dp"
@@ -65,25 +64,30 @@
                 android:id="@+id/imageButton"
                 android:layout_width="65sp"
                 android:layout_height="13sp"
+                android:layout_gravity="fill_vertical"
+                android:layout_marginLeft="10sp"
+                android:layout_marginTop="10sp"
+                android:layout_marginRight="10sp"
+                android:layout_marginBottom="10sp"
                 android:layout_weight="1"
                 android:background="@drawable/cancel_button"
-                android:backgroundTint="#0d0d0d"
                 android:onClick="clear"
                 android:padding="0sp"
-                android:text="@string/c"
                 android:shadowColor="@color/black"
-                android:textColor="@color/design_default_color_error"
+                android:text="@string/c"
+                android:textColor="#000000"
                 android:textSize="32sp"
-                android:layout_marginTop="10sp"
-                android:layout_marginBottom="10sp"
-                android:layout_marginRight="10sp"
-                android:layout_marginLeft="10sp"
-                android:layout_gravity="fill_vertical"/>
+                app:backgroundTint="#FB0000" />
 
             <Button
                 android:id="@+id/button_7"
                 android:layout_width="65sp"
                 android:layout_height="13sp"
+                android:layout_gravity="fill_vertical"
+                android:layout_marginLeft="10sp"
+                android:layout_marginTop="10sp"
+                android:layout_marginRight="10sp"
+                android:layout_marginBottom="10sp"
                 android:layout_weight="1"
                 android:background="@drawable/rounded_corner"
                 android:onClick="seven"
@@ -91,17 +95,18 @@
                 android:text="@string/_7"
                 android:textColor="#000000"
                 android:textSize="24sp"
-                android:layout_marginTop="10sp"
-                android:layout_marginBottom="10sp"
-                android:layout_marginRight="10sp"
-                android:layout_marginLeft="10sp"
-                android:layout_gravity="fill_vertical"/>
+                app:backgroundTint="#FF9800" />
 
 
             <Button
                 android:id="@+id/button_4"
                 android:layout_width="65sp"
                 android:layout_height="13sp"
+                android:layout_gravity="fill_vertical"
+                android:layout_marginLeft="10sp"
+                android:layout_marginTop="10sp"
+                android:layout_marginRight="10sp"
+                android:layout_marginBottom="10sp"
                 android:layout_weight="1"
                 android:background="@drawable/rounded_corner"
                 android:onClick="four"
@@ -109,15 +114,17 @@
                 android:text="@string/_4"
                 android:textColor="#000000"
                 android:textSize="24sp"
-                android:layout_marginTop="10sp"
-                android:layout_marginBottom="10sp"
-                android:layout_marginRight="10sp"
-                android:layout_marginLeft="10sp"
-                android:layout_gravity="fill_vertical"/>
+                app:backgroundTint="#FF9800" />
+
             <Button
                 android:id="@+id/button_1"
                 android:layout_width="65sp"
                 android:layout_height="13sp"
+                android:layout_gravity="fill_vertical"
+                android:layout_marginLeft="10sp"
+                android:layout_marginTop="10sp"
+                android:layout_marginRight="10sp"
+                android:layout_marginBottom="10sp"
                 android:layout_weight="1"
                 android:background="@drawable/rounded_corner"
                 android:onClick="one"
@@ -125,11 +132,7 @@
                 android:text="@string/t2_1"
                 android:textColor="#000000"
                 android:textSize="24sp"
-                android:layout_marginTop="10sp"
-                android:layout_marginBottom="10sp"
-                android:layout_marginRight="10sp"
-                android:layout_marginLeft="10sp"
-                android:layout_gravity="fill_vertical"/>
+                app:backgroundTint="#FF9800" />
 
 
             <ToggleButton
@@ -142,13 +145,13 @@
                 android:layout_marginRight="10sp"
                 android:layout_marginBottom="10sp"
                 android:layout_weight="1"
+                android:background="@drawable/cancel_button"
+                android:backgroundTint="#66ffb3"
+                android:checked="false"
                 android:padding="0sp"
                 android:textColor="#000000"
-                android:backgroundTint="#66ffb3"
-                android:background="@drawable/cancel_button"
                 android:textOff="@string/b"
                 android:textOn="@string/a"
-                android:checked="false"
                 android:textSize="24sp" />
         </LinearLayout>
 
@@ -162,6 +165,11 @@
                 android:id="@+id/button_modulo"
                 android:layout_width="65sp"
                 android:layout_height="13sp"
+                android:layout_gravity="fill_vertical"
+                android:layout_marginLeft="10sp"
+                android:layout_marginTop="10sp"
+                android:layout_marginRight="10sp"
+                android:layout_marginBottom="10sp"
                 android:layout_weight="1"
                 android:background="@drawable/rounded_corner"
                 android:onClick="modulus"
@@ -169,16 +177,17 @@
                 android:text="@string/modulo"
                 android:textColor="#000000"
                 android:textSize="24sp"
-                android:layout_marginTop="10sp"
-                android:layout_marginBottom="10sp"
-                android:layout_marginRight="10sp"
-                android:layout_marginLeft="10sp"
-                android:layout_gravity="fill_vertical"/>
+                app:backgroundTint="#E91E63" />
 
             <Button
                 android:id="@+id/button_8"
                 android:layout_width="65sp"
                 android:layout_height="13sp"
+                android:layout_gravity="fill_vertical"
+                android:layout_marginLeft="10sp"
+                android:layout_marginTop="10sp"
+                android:layout_marginRight="10sp"
+                android:layout_marginBottom="10sp"
                 android:layout_weight="1"
                 android:background="@drawable/rounded_corner"
                 android:onClick="eight"
@@ -186,16 +195,17 @@
                 android:text="@string/_8"
                 android:textColor="#000000"
                 android:textSize="24sp"
-                android:layout_marginTop="10sp"
-                android:layout_marginBottom="10sp"
-                android:layout_marginRight="10sp"
-                android:layout_marginLeft="10sp"
-                android:layout_gravity="fill_vertical"/>
+                app:backgroundTint="#FF9800" />
 
             <Button
                 android:id="@+id/button_5"
                 android:layout_width="65sp"
                 android:layout_height="13sp"
+                android:layout_gravity="fill_vertical"
+                android:layout_marginLeft="10sp"
+                android:layout_marginTop="10sp"
+                android:layout_marginRight="10sp"
+                android:layout_marginBottom="10sp"
                 android:layout_weight="1"
                 android:background="@drawable/rounded_corner"
                 android:onClick="five"
@@ -203,17 +213,18 @@
                 android:text="@string/_5"
                 android:textColor="#000000"
                 android:textSize="24sp"
-                android:layout_marginTop="10sp"
-                android:layout_marginBottom="10sp"
-                android:layout_marginRight="10sp"
-                android:layout_marginLeft="10sp"
-                android:layout_gravity="fill_vertical"/>
+                app:backgroundTint="#FF9800" />
 
 
             <Button
                 android:id="@+id/button_2"
                 android:layout_width="65sp"
                 android:layout_height="13sp"
+                android:layout_gravity="fill_vertical"
+                android:layout_marginLeft="10sp"
+                android:layout_marginTop="10sp"
+                android:layout_marginRight="10sp"
+                android:layout_marginBottom="10sp"
                 android:layout_weight="1"
                 android:background="@drawable/rounded_corner"
                 android:onClick="two"
@@ -222,16 +233,18 @@
                 android:text="@string/_2"
                 android:textColor="#000000"
                 android:textSize="24sp"
-                app:cornerRadius="1000sp"
-                android:layout_marginTop="10sp"
-                android:layout_marginBottom="10sp"
-                android:layout_marginRight="10sp"
-                android:layout_marginLeft="10sp"
-                android:layout_gravity="fill_vertical"/>
+                app:backgroundTint="#FF9800"
+                app:cornerRadius="1000sp" />
+
             <Button
                 android:id="@+id/button_0"
                 android:layout_width="65sp"
                 android:layout_height="13sp"
+                android:layout_gravity="fill_vertical"
+                android:layout_marginLeft="10sp"
+                android:layout_marginTop="10sp"
+                android:layout_marginRight="10sp"
+                android:layout_marginBottom="10sp"
                 android:layout_weight="1"
                 android:background="@drawable/rounded_corner"
                 android:onClick="zero"
@@ -239,11 +252,7 @@
                 android:text="@string/t3_0"
                 android:textColor="#000000"
                 android:textSize="24sp"
-                android:layout_marginTop="10sp"
-                android:layout_marginBottom="10sp"
-                android:layout_marginRight="10sp"
-                android:layout_marginLeft="10sp"
-                android:layout_gravity="fill_vertical"/>
+                app:backgroundTint="#FF9800" />
         </LinearLayout>
 
         <LinearLayout
@@ -256,22 +265,28 @@
                 android:id="@+id/backspace"
                 android:layout_width="65sp"
                 android:layout_height="10sp"
+                android:layout_gravity="fill_vertical"
+                android:layout_marginLeft="10sp"
+                android:layout_marginTop="10sp"
+                android:layout_marginRight="10sp"
+                android:layout_marginBottom="10sp"
                 android:layout_weight="1"
                 android:background="@drawable/backspace_round"
-                android:backgroundTint="#0d0d0d"
+                android:backgroundTint="#0d0d1d"
+                android:contentDescription="@string/backspace"
                 android:onClick="backspace"
                 app:srcCompat="@drawable/backspace"
-                app:tint="@color/red"
-                android:layout_marginTop="10sp"
-                android:layout_marginBottom="10sp"
-                android:layout_marginRight="10sp"
-                android:layout_marginLeft="10sp"
-                android:layout_gravity="fill_vertical"/>
+                app:tint="@color/red" />
 
             <Button
                 android:id="@+id/button_9"
                 android:layout_width="65sp"
                 android:layout_height="13sp"
+                android:layout_gravity="fill_vertical"
+                android:layout_marginLeft="10sp"
+                android:layout_marginTop="10sp"
+                android:layout_marginRight="10sp"
+                android:layout_marginBottom="10sp"
                 android:layout_weight="1"
                 android:background="@drawable/rounded_corner"
                 android:onClick="nine"
@@ -279,17 +294,18 @@
                 android:text="@string/_9"
                 android:textColor="#000000"
                 android:textSize="24sp"
-                android:layout_marginTop="10sp"
-                android:layout_marginBottom="10sp"
-                android:layout_marginRight="10sp"
-                android:layout_marginLeft="10sp"
-                android:layout_gravity="fill_vertical"/>
+                app:backgroundTint="#FF9800" />
 
 
             <Button
                 android:id="@+id/button_6"
                 android:layout_width="65sp"
                 android:layout_height="13sp"
+                android:layout_gravity="fill_vertical"
+                android:layout_marginLeft="10sp"
+                android:layout_marginTop="10sp"
+                android:layout_marginRight="10sp"
+                android:layout_marginBottom="10sp"
                 android:layout_weight="1"
                 android:background="@drawable/rounded_corner"
                 android:onClick="six"
@@ -297,16 +313,17 @@
                 android:text="@string/_6"
                 android:textColor="#000000"
                 android:textSize="24sp"
-                android:layout_marginTop="10sp"
-                android:layout_marginBottom="10sp"
-                android:layout_marginRight="10sp"
-                android:layout_marginLeft="10sp"
-                android:layout_gravity="fill_vertical"/>
+                app:backgroundTint="#FF9800" />
 
             <Button
                 android:id="@+id/button_3"
                 android:layout_width="65sp"
                 android:layout_height="13sp"
+                android:layout_gravity="fill_vertical"
+                android:layout_marginLeft="10sp"
+                android:layout_marginTop="10sp"
+                android:layout_marginRight="10sp"
+                android:layout_marginBottom="10sp"
                 android:layout_weight="1"
                 android:background="@drawable/rounded_corner"
                 android:onClick="three"
@@ -314,17 +331,18 @@
                 android:text="@string/_3"
                 android:textColor="#000000"
                 android:textSize="24sp"
-                android:layout_marginTop="10sp"
-                android:layout_marginBottom="10sp"
-                android:layout_marginRight="10sp"
-                android:layout_marginLeft="10sp"
-                android:layout_gravity="fill_vertical"/>
+                app:backgroundTint="#FF9800" />
 
 
             <Button
                 android:id="@+id/button_dot"
                 android:layout_width="65sp"
                 android:layout_height="13sp"
+                android:layout_gravity="fill_vertical"
+                android:layout_marginLeft="10sp"
+                android:layout_marginTop="10sp"
+                android:layout_marginRight="10sp"
+                android:layout_marginBottom="10sp"
                 android:layout_weight="1"
                 android:background="@drawable/rounded_corner"
                 android:onClick="dot"
@@ -332,11 +350,7 @@
                 android:text="@string/dot"
                 android:textColor="#000000"
                 android:textSize="24sp"
-                android:layout_marginTop="10sp"
-                android:layout_marginBottom="10sp"
-                android:layout_marginRight="10sp"
-                android:layout_marginLeft="10sp"
-                android:layout_gravity="fill_vertical"/>
+                app:backgroundTint="#FFc34d" />
 
         </LinearLayout>
 
@@ -350,6 +364,11 @@
                 android:id="@+id/button_divide"
                 android:layout_width="65sp"
                 android:layout_height="13sp"
+                android:layout_gravity="fill_vertical"
+                android:layout_marginLeft="10sp"
+                android:layout_marginTop="10sp"
+                android:layout_marginRight="10sp"
+                android:layout_marginBottom="10sp"
                 android:layout_weight="1"
                 android:background="@drawable/rounded_corner"
                 android:onClick="divide"
@@ -357,16 +376,17 @@
                 android:text="@string/division"
                 android:textColor="#000000"
                 android:textSize="24sp"
-                android:layout_marginTop="10sp"
-                android:layout_marginBottom="10sp"
-                android:layout_marginRight="10sp"
-                android:layout_marginLeft="10sp"
-                android:layout_gravity="fill_vertical"/>
+                app:backgroundTint="#33ff77" />
 
             <Button
                 android:id="@+id/button_multiply"
                 android:layout_width="65sp"
                 android:layout_height="13sp"
+                android:layout_gravity="fill_vertical"
+                android:layout_marginLeft="10sp"
+                android:layout_marginTop="10sp"
+                android:layout_marginRight="10sp"
+                android:layout_marginBottom="10sp"
                 android:layout_weight="1"
                 android:background="@drawable/rounded_corner"
                 android:onClick="multiply"
@@ -374,16 +394,17 @@
                 android:text="@string/multiply"
                 android:textColor="#000000"
                 android:textSize="24sp"
-                android:layout_marginTop="10sp"
-                android:layout_marginBottom="10sp"
-                android:layout_marginRight="10sp"
-                android:layout_marginLeft="10sp"
-                android:layout_gravity="fill_vertical"/>
+                app:backgroundTint="#33ff77" />
 
             <Button
                 android:id="@+id/button_subtract"
                 android:layout_width="65sp"
                 android:layout_height="13sp"
+                android:layout_gravity="fill_vertical"
+                android:layout_marginLeft="10sp"
+                android:layout_marginTop="10sp"
+                android:layout_marginRight="10sp"
+                android:layout_marginBottom="10sp"
                 android:layout_weight="1"
                 android:background="@drawable/rounded_corner"
                 android:onClick="minus"
@@ -391,16 +412,17 @@
                 android:text="@string/minus0"
                 android:textColor="#000000"
                 android:textSize="24sp"
-                android:layout_marginTop="10sp"
-                android:layout_marginBottom="10sp"
-                android:layout_marginRight="10sp"
-                android:layout_marginLeft="10sp"
-                android:layout_gravity="fill_vertical"/>
+                app:backgroundTint="#33ff77" />
 
             <Button
                 android:id="@+id/button_add"
                 android:layout_width="65sp"
                 android:layout_height="13sp"
+                android:layout_gravity="fill_vertical"
+                android:layout_marginLeft="10sp"
+                android:layout_marginTop="10sp"
+                android:layout_marginRight="10sp"
+                android:layout_marginBottom="10sp"
                 android:layout_weight="1"
                 android:background="@drawable/rounded_corner"
                 android:onClick="plus"
@@ -408,16 +430,17 @@
                 android:text="@string/plus0"
                 android:textColor="#000000"
                 android:textSize="24sp"
-                android:layout_marginTop="10sp"
-                android:layout_marginBottom="10sp"
-                android:layout_marginRight="10sp"
-                android:layout_marginLeft="10sp"
-                android:layout_gravity="fill_vertical"/>
+                app:backgroundTint="#33ff77" />
 
             <Button
                 android:id="@+id/button_equal"
                 android:layout_width="65sp"
                 android:layout_height="13sp"
+                android:layout_gravity="fill_vertical"
+                android:layout_marginLeft="10sp"
+                android:layout_marginTop="10sp"
+                android:layout_marginRight="10sp"
+                android:layout_marginBottom="10sp"
                 android:layout_weight="1"
                 android:background="@drawable/rounded_corner"
                 android:onClick="equal"
@@ -425,11 +448,7 @@
                 android:text="@string/equalTo"
                 android:textColor="#000000"
                 android:textSize="24sp"
-                android:layout_marginTop="10sp"
-                android:layout_marginBottom="10sp"
-                android:layout_marginRight="10sp"
-                android:layout_marginLeft="10sp"
-                android:layout_gravity="fill_vertical"/>
+                app:backgroundTint="#00e64d" />
         </LinearLayout>
 
     </LinearLayout>

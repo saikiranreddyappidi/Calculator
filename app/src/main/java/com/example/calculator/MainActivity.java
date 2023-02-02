@@ -1,5 +1,6 @@
 package com.example.calculator;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -123,7 +124,7 @@ class EvaluateString
             }
             double value=val.pop();
             System.out.println("\nResult = "+value);
-            return value;
+            return (float)value;
         }
         catch (Exception e){
             System.out.println("Invalid Expression Evaluation"+e.getMessage());
