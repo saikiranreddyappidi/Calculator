@@ -1,5 +1,6 @@
 package com.example.calculator;
 
+import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
@@ -186,9 +187,13 @@ public class MainActivity extends AppCompatActivity {
             Button dot = findViewById(R.id.button_dot);
             if (isChecked) {
                 plus.setText("|");
+                plus.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#00e6e6")));
                 minus.setText("&");
+                minus.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#00e6e6")));
                 multiply.setText("^");
+                multiply.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#00e6e6")));
                 divide.setText("~");
+                divide.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#00e6e6")));
                 toggleState = true;
                 dot.setText("N/A");
 
@@ -200,6 +205,10 @@ public class MainActivity extends AppCompatActivity {
                 divide.setText("/");
                 dot.setText(".");
                 toggleState = false;
+                plus.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#33ff77")));
+                minus.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#33ff77")));
+                multiply.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#33ff77")));
+                divide.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#33ff77")));
             }
         });
     }
