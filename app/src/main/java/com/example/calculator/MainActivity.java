@@ -2,9 +2,12 @@ package com.example.calculator;
 
 import android.content.res.ColorStateList;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
@@ -142,28 +145,51 @@ class construct{
     double result=0;
     public String extend(char num){
         this.num = num;
+        if(ErrorDetection(arr,num)){
+            return arr;
+        }
         arr+=num;
         System.out.println(arr+" from extend");
         return arr;
     }
     public String ans() {
+        int i=arr.length()-1;
+        if(ErrorDetection(arr,num)){
+            return "Invalid Expression";
+        }
         try{
-            int i=arr.length()-1;
-            if(arr.charAt(i)=='+'||arr.charAt(i)=='-'||arr.charAt(i)=='*'||arr.charAt(i)=='/'||
-                    arr.charAt(i)=='%'||arr.charAt(i)=='.'||arr.charAt(i)=='&'||arr.charAt(i)=='|'||arr.charAt(i)=='^'||
-                    (arr.charAt(i)=='0' &&(arr.charAt(i-1)=='/'||arr.charAt(i-1)=='%'))
-            )
+            if(arr.charAt(i)=='0' &&(arr.charAt(i-1)=='/'||arr.charAt(i-1)=='%'))
             {
                 System.out.println("Invalid Expression constructor");
-                return "Invalid Expression";
+                return "Can't divide by 0";
             }
-            result = EvaluateString.evaluate(arr);
-            return String.valueOf(result);
         }
         catch (Exception e){
-            System.out.println("Invalid Expression an exception constructor");
-            return String.valueOf(result);
+            System.out.println("Invalid Expression constructor"+e.getMessage());
+            return "0.0";
         }
+        result = EvaluateString.evaluate(arr);
+        return String.valueOf(result);
+    }
+    public boolean ErrorDetection(String arr,char num){
+        arr+=num;
+        try{
+            int i=arr.length()-1;
+            System.out.println(arr+" from ErrorDetection"+i);
+            if((arr.charAt(i)=='+'||arr.charAt(i)=='-'||arr.charAt(i)=='*'||arr.charAt(i)=='/'||arr.charAt(i)=='%'||
+                    arr.charAt(i)=='.'||arr.charAt(i)=='&'||arr.charAt(i)=='|'||arr.charAt(i)=='^')&&
+                    (arr.charAt(i-1)=='+'||arr.charAt(i-1)=='-'||arr.charAt(i-1)=='*'||arr.charAt(i-1)=='/'||arr.charAt(i-1)=='%'||
+                            arr.charAt(i-1)=='.'||arr.charAt(i-1)=='&'||arr.charAt(i-1)=='|'||arr.charAt(i-1)=='^')
+            )
+            {
+                return true;
+            }
+        }
+        catch (Exception e){
+            System.out.println("Invalid Expression an exception ErrorDetection");
+            return true;
+        }
+        return false;
     }
 }
 public class MainActivity extends AppCompatActivity {
@@ -187,16 +213,14 @@ public class MainActivity extends AppCompatActivity {
             Button dot = findViewById(R.id.button_dot);
             if (isChecked) {
                 plus.setText("|");
-                plus.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#00e6e6")));
                 minus.setText("&");
-                minus.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#00e6e6")));
                 multiply.setText("^");
-                multiply.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#00e6e6")));
                 divide.setText("~");
-                divide.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#00e6e6")));
+                plus.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#33ff77")));
+                minus.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#33ff77")));
+                multiply.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#33ff77")));
+                divide.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#33ff77")));
                 toggleState = true;
-                dot.setText("N/A");
-
             }
             else{
                 plus.setText("+");
@@ -205,11 +229,18 @@ public class MainActivity extends AppCompatActivity {
                 divide.setText("/");
                 dot.setText(".");
                 toggleState = false;
-                plus.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#33ff77")));
-                minus.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#33ff77")));
-                multiply.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#33ff77")));
-                divide.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#33ff77")));
+                plus.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#00e6e6")));
+                minus.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#00e6e6")));
+                multiply.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#00e6e6")));
+                divide.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#00e6e6")));
             }
+        });
+        ImageButton backspace = (ImageButton) findViewById(R.id.backspace);
+        backspace.setOnLongClickListener(v -> {
+            str.arr="";
+            input.setText("0");
+            output.setText("0.0");
+            return true;
         });
     }
     public void one(View view) {
@@ -290,8 +321,7 @@ public class MainActivity extends AppCompatActivity {
         input.setText(str.extend('%'));
     }
     public void dot(View view) {
-        if (!toggleState)
-            input.setText(str.extend('.'));
+        input.setText(str.extend('.'));
     }
     public void backspace(View view) {
         if(str.arr.length()>0) {
@@ -301,8 +331,8 @@ public class MainActivity extends AppCompatActivity {
         }
     }
     public void clear(View view) {
-        input.setText("");
-        output.setText("");
+        input.setText("0");
+        output.setText("0.0");
         str.arr="";
         str.result=0;
     }

@@ -13,7 +13,11 @@
         android:layout_height="133dp"
         android:layout_weight="1"
         android:orientation="vertical"
-        android:padding="10sp">
+        android:background="@drawable/output_round_corner"
+        android:layout_marginStart="0sp"
+        android:layout_marginEnd="0sp"
+        android:padding="10sp"
+        android:layout_marginBottom="5sp">
 
         <TextView
             android:id="@+id/input"
@@ -47,11 +51,16 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="2.5"
-        android:background="#2E2D2D"
-        android:baselineAligned="false">
+        android:background="@drawable/keyboard_round_corner"
+        android:baselineAligned="false"
+        android:layout_marginStart="0sp"
+        android:paddingStart="10sp"
+        android:paddingEnd="0sp"
+        android:layout_marginEnd="0sp"
+        android:layout_marginBottom="-2sp"
+        android:layout_width="match_parent">
 
         <LinearLayout
             android:layout_width="0dp"
@@ -393,7 +402,7 @@
                 android:text="@string/division"
                 android:textColor="#000000"
                 android:textSize="24sp"
-                app:backgroundTint="#33ff77" />
+                app:backgroundTint="#00e6e6" />
 
             <Button
                 android:id="@+id/button_multiply"
@@ -412,7 +421,7 @@
                 android:text="@string/multiply"
                 android:textColor="#000000"
                 android:textSize="24sp"
-                app:backgroundTint="#33ff77" />
+                app:backgroundTint="#00e6e6" />
 
             <Button
                 android:id="@+id/button_subtract"
@@ -431,7 +440,7 @@
                 android:text="@string/minus0"
                 android:textColor="#000000"
                 android:textSize="24sp"
-                app:backgroundTint="#33ff77" />
+                app:backgroundTint="#00e6e6" />
 
             <Button
                 android:id="@+id/button_add"
@@ -450,7 +459,7 @@
                 android:text="@string/plus0"
                 android:textColor="#000000"
                 android:textSize="24sp"
-                app:backgroundTint="#33ff77" />
+                app:backgroundTint="#00e6e6" />
 
             <Button
                 android:id="@+id/button_equal"
