@@ -2,9 +2,8 @@ package com.example.calculator;
 
 import android.content.res.ColorStateList;
 import android.graphics.Color;
-import android.os.Build;
+import android.icu.math.BigDecimal;
 import android.os.Bundle;
-import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -13,17 +12,19 @@ import android.widget.ToggleButton;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.math.BigInteger;
+import java.text.DecimalFormat;
 import java.util.Stack;
 
 class EvaluateString
 {
-    public static double evaluate(String input)
+    public static BigDecimal evaluate(String input)
     {
         try{
-            Stack<Integer> op  = new Stack<Integer>();
-            Stack<Double> val = new Stack<Double>();
-            Stack<Integer> optmp  = new Stack<Integer>();
-            Stack<Double> valtmp = new Stack<Double>();
+            Stack<BigInteger> op  = new Stack<BigInteger>();
+            Stack<BigDecimal> val = new Stack<BigDecimal>();
+            Stack<BigInteger> optmp  = new Stack<BigInteger>();
+            Stack<BigDecimal> valtmp = new Stack<BigDecimal>();
             input = "0" + input;
             input = input.replaceAll("-","+-");
             StringBuilder temp = new StringBuilder();
@@ -36,32 +37,33 @@ class EvaluateString
                     temp.append(ch);
                 else
                 {
-                    val.push(Double.parseDouble(temp.toString()));
-                    op.push((int)ch);
+                    val.push(BigDecimal.valueOf(Double.parseDouble(temp.toString())));
+                    op.push(BigInteger.valueOf(ch));
                     temp = new StringBuilder();
                 }
             }
-            val.push(Double.parseDouble(temp.toString()));
+            val.push(BigDecimal.valueOf(Double.parseDouble(temp.toString())));
             char[] operators = {'/','*','%','+','&','|','^','~'};
             for (int i = 0; i < 8; i++)
             {
                 boolean it = false;
                 while (!op.isEmpty())
                 {
-                    int optr = op.pop();
-                    double v1 = val.pop();
-                    double v2 = val.pop();
+                    int optr = op.pop().intValue();
+                    BigDecimal v1 = new BigDecimal(String.valueOf(val.pop()));
+                    BigDecimal v2 = new BigDecimal(String.valueOf(val.pop()));
+                    BigDecimal zero = new BigDecimal(0);
+                    BigDecimal res = new BigDecimal(0);
                     if (optr == operators[i])
                     {
                         if (i == 0)
                         {
-                            double res=0;
-                            if (v1 == 0)
+                            if (v1.equals(zero))
                             {
                                 System.out.println("Can't divide by 0");
                             }
                             else {
-                                res = v2 / v1;
+                                res = v2.divide(v1, 8, BigDecimal.ROUND_HALF_UP);
                             }
                             valtmp.push(res);
                             it = true;
@@ -69,45 +71,44 @@ class EvaluateString
                         }
                         else if (i == 1)
                         {
-                            valtmp.push(v2 * v1);
+                            valtmp.push(v2.multiply(v1));
                             it = true;
                             break;
                         }
                         else if(i==2) {
-                            double res=0;
-                            if (v1 == 0)
+                            if (v1.equals(zero))
                             {
                                 System.out.println("Can't divide by 0");
                             }
                             else {
-                                res = v2 % v1;
+                                res = BigDecimal.valueOf(v2.doubleValue()%v1.doubleValue());
                             }
                             valtmp.push(res);
                             it = true;
                             break;
                         }
                         else if(i==3){
-                            valtmp.push(v2 + v1);
+                            valtmp.push(v1.add(v2));
                             it = true;
                             break;
                         }
                         else if(i==4){
-                            valtmp.push((double) ((int)v2 & (int)v1));
+                            valtmp.push(BigDecimal.valueOf((v2.intValue() & v1.intValue())));
                             it = true;
                             break;
                         }
                         else if(i==5){
-                            valtmp.push((double) ((int)v2 | (int)v1));
+                            valtmp.push(BigDecimal.valueOf((v2.intValue() | v1.intValue())));
                             it = true;
                             break;
                         }
                         else if(i==6){
-                            valtmp.push((double) ((int)v2 ^ (int)v1));
+                            valtmp.push(BigDecimal.valueOf((v2.intValue() ^ v1.intValue())));
                             it = true;
                             break;
                         }
                         else {
-                            valtmp.push((double) (~ (int)v1));
+                            valtmp.push(BigDecimal.valueOf(~ v1.intValue()));
                             it = true;
                             break;
                         }
@@ -116,7 +117,7 @@ class EvaluateString
                     {
                         valtmp.push(v1);
                         val.push(v2);
-                        optmp.push(optr);
+                        optmp.push(BigInteger.valueOf(optr));
                     }
                 }
                 while (!valtmp.isEmpty())
@@ -126,13 +127,13 @@ class EvaluateString
                 if (it)
                     i--;
             }
-            double value=val.pop();
+            BigDecimal value=val.pop();
             System.out.println("\nResult = "+value);
-            return (float)value;
+            return value;
         }
         catch (Exception e){
             System.out.println("Invalid Expression Evaluation"+e.getMessage());
-            return 0.00;
+            return BigDecimal.valueOf(0.00);
         }
     }
 }
@@ -142,11 +143,16 @@ class EvaluateString
 class construct{
     char num;
     String arr="";
-    double result=0;
+    BigDecimal result = new BigDecimal(0);
+    boolean flag=false;
     public String extend(char num){
         this.num = num;
         if(ErrorDetection(arr,num)){
             return arr;
+        }
+        if(flag){
+            arr="";
+            flag=false;
         }
         arr+=num;
         System.out.println(arr+" from extend");
@@ -155,21 +161,26 @@ class construct{
     public String ans() {
         int i=arr.length()-1;
         if(ErrorDetection(arr,num)){
+            flag=true;
             return "Invalid Expression";
         }
         try{
             if(arr.charAt(i)=='0' &&(arr.charAt(i-1)=='/'||arr.charAt(i-1)=='%'))
             {
                 System.out.println("Invalid Expression constructor");
+                flag=true;
                 return "Can't divide by 0";
             }
         }
         catch (Exception e){
             System.out.println("Invalid Expression constructor"+e.getMessage());
+            flag=true;
             return "0.0";
         }
         result = EvaluateString.evaluate(arr);
-        return String.valueOf(result);
+        flag=false;
+        DecimalFormat df = new DecimalFormat("#.#######");
+        return df.format(result);
     }
     public boolean ErrorDetection(String arr,char num){
         arr+=num;
@@ -203,7 +214,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         input = findViewById(R.id.input);
+        input.setSelected(true);
         output = findViewById(R.id.output);
+        output.setSelected(true);
         toggle = findViewById(R.id.togglebutton);
         toggle.setOnCheckedChangeListener((buttonView, isChecked) -> {
             Button plus = findViewById(R.id.button_add);
@@ -239,7 +252,7 @@ public class MainActivity extends AppCompatActivity {
         backspace.setOnLongClickListener(v -> {
             str.arr="";
             input.setText("0");
-            output.setText("0.0");
+            output.setText("0");
             return true;
         });
     }
@@ -332,8 +345,8 @@ public class MainActivity extends AppCompatActivity {
     }
     public void clear(View view) {
         input.setText("0");
-        output.setText("0.0");
+        output.setText("0");
         str.arr="";
-        str.result=0;
+        str.result=BigDecimal.ZERO;
     }
 }
