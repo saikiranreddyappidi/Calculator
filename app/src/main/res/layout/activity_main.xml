@@ -6,11 +6,49 @@
     android:layout_height="match_parent"
     android:background="#1a1a1a"
     android:orientation="vertical"
-    android:padding="10sp">
+    android:padding="8sp">
+
+    <LinearLayout
+        android:layout_width="382dp"
+        android:layout_height="65sp"
+        android:layout_marginBottom="5sp"
+        android:orientation="horizontal"
+        android:paddingStart="9sp"
+        android:paddingEnd="29sp"
+        android:paddingBottom="10sp">
+
+        <Button
+            android:id="@+id/history"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="110dp"
+            android:layout_height="wrap_content"
+            android:padding="5sp"
+            android:text="@string/history"
+            android:textColor="@color/white" />
+
+        <Button
+            android:id="@+id/more"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="110dp"
+            android:layout_height="wrap_content"
+            android:padding="5sp"
+            android:text="@string/more"
+            android:textColor="@color/white" />
+
+        <Button
+            android:id="@+id/finance"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="113dp"
+            android:layout_height="wrap_content"
+            android:padding="5sp"
+            android:text="@string/finance"
+            android:textColor="@color/white" />
+
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="133dp"
+        android:layout_height="113sp"
         android:layout_weight="1"
         android:orientation="vertical"
         android:background="@drawable/output_round_corner"
@@ -19,11 +57,13 @@
         android:padding="10sp"
         android:layout_marginBottom="5sp">
 
+
+
+
         <TextView
             android:id="@+id/input"
             android:layout_width="match_parent"
-            android:layout_height="51sp"
-            android:layout_weight="1"
+            android:layout_height="150sp"
             android:autoSizeMaxTextSize="48sp"
             android:autoSizeMinTextSize="24sp"
             android:autoSizeStepGranularity="2sp"
@@ -31,18 +71,17 @@
             android:gravity="bottom|end"
             android:text="@string/_0"
             android:textColor="@color/white"
-            android:textSize="24sp" />
+            android:textSize="44sp" />
 
         <TextView
             android:id="@+id/output"
             android:layout_width="match_parent"
-            android:layout_height="14sp"
-            android:layout_weight="0.5"
+            android:layout_height="50dp"
             android:autoSizeMaxTextSize="34sp"
             android:autoSizeMinTextSize="12sp"
             android:autoSizeStepGranularity="2sp"
             android:autoSizeTextType="uniform"
-            android:gravity="bottom|right"
+            android:gravity="bottom|end"
             android:text="@string/t_0"
             android:textColor="@color/white"
             android:textSize="34sp" />

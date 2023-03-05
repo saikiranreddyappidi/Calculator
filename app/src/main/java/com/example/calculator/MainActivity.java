@@ -1,5 +1,7 @@
 package com.example.calculator;
 
+import android.content.Context;
+import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.icu.math.BigDecimal;
@@ -8,10 +10,15 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.InputStreamReader;
 import java.math.BigInteger;
 import java.text.DecimalFormat;
 import java.util.Stack;
@@ -197,7 +204,7 @@ class construct{
             }
         }
         catch (Exception e){
-            System.out.println("Invalid Expression an exception ErrorDetection");
+            System.out.println("Invalid Expression an exception ErrorDetection"+e.getMessage());
             return true;
         }
         return false;
@@ -208,6 +215,7 @@ public class MainActivity extends AppCompatActivity {
     ToggleButton toggle;
     construct str = new construct();
     boolean toggleState = false;
+    Button history;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -255,6 +263,27 @@ public class MainActivity extends AppCompatActivity {
             output.setText("0");
             return true;
         });
+        history = findViewById(R.id.history);
+        history.setOnClickListener(v -> {
+            if(new DataControl().getLines()>0){
+                Intent intent = new Intent(MainActivity.this, History.class);
+                startActivity(intent);
+            }
+            else{
+                Toast.makeText(MainActivity.this, "No History", Toast.LENGTH_SHORT).show();
+            }
+        });
+        try{
+            Intent intent = getIntent();
+            String inp = intent.getStringExtra("inp").trim();
+            String out = intent.getStringExtra("out").trim();
+            str.arr = inp;
+            input.setText(inp);
+            output.setText(out);
+        }
+        catch (Exception e){
+            System.out.println("Exception in onCreate "+e.getMessage());
+        }
     }
     public void one(View view) {
         input.setText(str.extend('1'));
@@ -296,13 +325,15 @@ public class MainActivity extends AppCompatActivity {
         input.setText(str.extend('0'));
         output.setText(str.ans());
     }
-    public void doubleZero(View view) {
-        input.setText(str.extend('0'));
-        input.setText(str.extend('0'));
-        output.setText(str.ans());
-    }
     public void equal(View view) {
         str.arr= str.ans();
+        DataControl dataControl = new DataControl();
+        String data = input.getText().toString()+" = "+output.getText().toString();
+        boolean b=dataControl.write(data, this);
+        if (b)
+            Toast.makeText(this, "Saved", Toast.LENGTH_SHORT).show();
+        else
+            Toast.makeText(this, "Not Saved", Toast.LENGTH_SHORT).show();
         input.setText(str.arr);
         output.setText("0");
     }
@@ -348,5 +379,70 @@ public class MainActivity extends AppCompatActivity {
         output.setText("0");
         str.arr="";
         str.result=BigDecimal.ZERO;
+    }
+}
+
+
+class DataControl{
+
+    private static Integer lines=0;
+    public String read(Context context){
+        try {
+            FileInputStream fileInputStream = context.openFileInput("data.txt");
+            InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream);
+            BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+            StringBuilder stringBuilder = new StringBuilder();
+            String line;
+            while ((line = bufferedReader.readLine()) != null) {
+                stringBuilder.append(line).append("\n");
+                lines++;
+            }
+            fileInputStream.close();
+            return stringBuilder.toString();
+        }
+        catch (Exception e){
+            return "";
+        }
+    }
+    protected boolean write(String data, Context context){
+        try {
+            data+= "\n";
+            FileOutputStream fileOutputStream = context.openFileOutput("data.txt", Context.MODE_APPEND);
+            fileOutputStream.write(data.getBytes());
+            fileOutputStream.close();
+            lines++;
+            return true;
+        }
+        catch (Exception e){
+            return false;
+        }
+    }
+
+    protected Integer getLines(){
+        return lines;
+    }
+    protected static boolean delete(Context context){
+        try {
+            FileOutputStream fileOutputStream = context.openFileOutput("data.txt", Context.MODE_PRIVATE);
+            fileOutputStream.write("".getBytes());
+            fileOutputStream.close();
+            return true;
+        }
+        catch (Exception e){
+            return false;
+        }
+    }
+
+    protected boolean clear(Context context){
+        try {
+            FileOutputStream fileOutputStream = context.openFileOutput("data.txt", Context.MODE_PRIVATE);
+            fileOutputStream.write("".getBytes());
+            fileOutputStream.close();
+            lines=0;
+            return true;
+        }
+        catch (Exception e){
+            return false;
+        }
     }
 }
