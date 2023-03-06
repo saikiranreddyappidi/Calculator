@@ -28,10 +28,10 @@ class EvaluateString
     public static BigDecimal evaluate(String input)
     {
         try{
-            Stack<BigInteger> op  = new Stack<BigInteger>();
-            Stack<BigDecimal> val = new Stack<BigDecimal>();
-            Stack<BigInteger> optmp  = new Stack<BigInteger>();
-            Stack<BigDecimal> valtmp = new Stack<BigDecimal>();
+            Stack<BigInteger> op  = new Stack<>();
+            Stack<BigDecimal> val = new Stack<>();
+            Stack<BigInteger> optmp  = new Stack<>();
+            Stack<BigDecimal> valtmp = new Stack<>();
             input = "0" + input;
             input = input.replaceAll("-","+-");
             StringBuilder temp = new StringBuilder();
@@ -151,15 +151,29 @@ class construct{
     char num;
     String arr="";
     BigDecimal result = new BigDecimal(0);
-    boolean flag=false;
+    boolean flag=false,zero_flag=false;
     public String extend(char num){
         this.num = num;
         if(ErrorDetection(arr,num)){
             return arr;
         }
-        if(flag){
-            arr="";
-            flag=false;
+        if(flag && !zero_flag){
+            System.out.println("flag true"+arr);
+            arr = "";
+            flag = false;
+        }
+        try{
+            if (zero_flag){
+                int i=arr.length()-1;
+                System.out.println("zero flag true"+arr.charAt(i));
+                if(arr.charAt(i)=='.')
+                {
+                    zero_flag = false;
+                }
+            }
+        }
+        catch (Exception e){
+            System.out.println("Invalid Expression constructor"+e.getMessage());
         }
         arr+=num;
         System.out.println(arr+" from extend");
@@ -174,15 +188,16 @@ class construct{
         try{
             if(arr.charAt(i)=='0' &&(arr.charAt(i-1)=='/'||arr.charAt(i-1)=='%'))
             {
-                System.out.println("Invalid Expression constructor");
+                System.out.println("Invalid Expression constructor zero checking.");
                 flag=true;
+                zero_flag=true;
                 return "Can't divide by 0";
             }
         }
         catch (Exception e){
             System.out.println("Invalid Expression constructor"+e.getMessage());
             flag=true;
-            return "0.0";
+            return "0";
         }
         result = EvaluateString.evaluate(arr);
         flag=false;
@@ -200,6 +215,7 @@ class construct{
                             arr.charAt(i-1)=='.'||arr.charAt(i-1)=='&'||arr.charAt(i-1)=='|'||arr.charAt(i-1)=='^')
             )
             {
+                System.out.println("Invalid Expression ErrorDetection");
                 return true;
             }
         }
@@ -265,13 +281,8 @@ public class MainActivity extends AppCompatActivity {
         });
         history = findViewById(R.id.history);
         history.setOnClickListener(v -> {
-            if(new DataControl().getLines()>0){
-                Intent intent = new Intent(MainActivity.this, History.class);
-                startActivity(intent);
-            }
-            else{
-                Toast.makeText(MainActivity.this, "No History", Toast.LENGTH_SHORT).show();
-            }
+            Intent intent = new Intent(MainActivity.this, History.class);
+            startActivity(intent);
         });
         try{
             Intent intent = getIntent();
@@ -418,7 +429,8 @@ class DataControl{
         }
     }
 
-    protected Integer getLines(){
+    protected Integer getLines(Context context){
+        read(context);
         return lines;
     }
     protected static boolean delete(Context context){

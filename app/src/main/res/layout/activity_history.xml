@@ -45,19 +45,7 @@
             android:textColor="@color/white" />
 
     </LinearLayout>
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/delete"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="end"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
-        android:overScrollMode="ifContentScrolls"
-        android:src="@drawable/baseline_delete_24"
-        app:fabSize="normal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:contentDescription="@string/delete" />
+
 
     <ScrollView
         android:layout_width="match_parent"
@@ -72,5 +60,21 @@
 
         </LinearLayout>
     </ScrollView>
+
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/delete"
+        android:layout_width="60sp"
+        android:layout_height="60sp"
+        app:fabCustomSize="60sp"
+        android:layout_gravity="bottom|end"
+        android:layout_marginTop="-80sp"
+        android:layout_marginEnd="26sp"
+        android:contentDescription="@string/delete"
+        android:overScrollMode="ifContentScrolls"
+        android:src="@drawable/baseline_delete_24"
+        app:fabSize="auto"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </LinearLayout>

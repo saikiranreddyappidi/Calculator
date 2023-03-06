@@ -19,29 +19,37 @@ import java.util.Collections;
 
 public class History extends AppCompatActivity implements View.OnClickListener, View.OnLongClickListener{
     DataControl dataControl = new DataControl();
-    Integer no_lines=dataControl.getLines();
+    Integer no_lines;
     FloatingActionButton delete;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_history);
+        no_lines = dataControl.getLines(this);
         System.out.println("lines: "+no_lines);
-        String text = dataControl.read(this);
-        String[] lines = text.split("\n");
-        Collections.reverse(Arrays.asList(lines));
-        for (String line : lines) {
-            addButton(line);
-            System.out.println(line);
+        if(no_lines == 0){
+            Toast.makeText(this, "No history found", Toast.LENGTH_SHORT).show();
+            delete = findViewById(R.id.delete);
+            delete.hide();
         }
-        delete = findViewById(R.id.delete);
-        delete.setOnClickListener(v -> {
-            if(dataControl.clear(History.this))
-                Toast.makeText(History.this, "History Cleared", Toast.LENGTH_SHORT).show();
-            else
-                Toast.makeText(History.this, "History not Cleared", Toast.LENGTH_SHORT).show();
-            finish();
-        });
+        else{
+            String text = dataControl.read(this);
+            String[] lines = text.split("\n");
+            Collections.reverse(Arrays.asList(lines));
+            for (String line : lines) {
+                addButton(line);
+                System.out.println(line);
+            }
+            delete = findViewById(R.id.delete);
+            delete.setOnClickListener(v -> {
+                if(dataControl.clear(History.this))
+                    Toast.makeText(History.this, "History Cleared", Toast.LENGTH_SHORT).show();
+                else
+                    Toast.makeText(History.this, "History not Cleared", Toast.LENGTH_SHORT).show();
+                finish();
+            });
+        }
     }
     private void addButton(String text) {
         LinearLayout layout = findViewById(R.id.buttonList);
