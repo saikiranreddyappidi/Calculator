@@ -18,8 +18,9 @@ import java.util.Collections;
 
 
 public class History extends AppCompatActivity implements View.OnClickListener, View.OnLongClickListener{
-    DataControl dataControl = new DataControl();
+
     Integer no_lines;
+    DataServer dataControl = new DataServer();
     FloatingActionButton delete;
 
     @Override
@@ -85,6 +86,19 @@ public class History extends AppCompatActivity implements View.OnClickListener, 
         Button button = (Button) v;
         String text = button.getText().toString();
         System.out.println(text+" long clicked");
+        if(dataControl.deleteLine(this,text)){
+            Toast.makeText(this, "Deleted", Toast.LENGTH_SHORT).show();
+            ViewGroup layout = (ViewGroup) button.getParent();
+            if(null!=layout)
+                layout.removeView(button);
+            no_lines=dataControl.getLines(this);
+            if(no_lines==0){
+                delete.hide();
+            }
+        }
+        else{
+            Toast.makeText(this, "Not Deleted", Toast.LENGTH_SHORT).show();
+        }
         return true;
     }
 }
