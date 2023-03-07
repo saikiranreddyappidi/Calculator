@@ -129,4 +129,6 @@
     <string name="more">More</string>
     <string name="history">History</string>
     <string name="delete">Delete</string>
+    <string name="copy">copy</string>
+    <string name="share">share</string>
 </resources>
