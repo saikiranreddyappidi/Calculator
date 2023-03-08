@@ -177,6 +177,7 @@ public class History extends AppCompatActivity implements View.OnClickListener, 
                 sel++;
             }
         }
+        Button btnSelectAll = findViewById(R.id.selectAll);
         if(selectedAll){
             for(int i=0;i<layout.getChildCount();i++){
                 Button button = (Button) layout.getChildAt(i);
@@ -185,12 +186,16 @@ public class History extends AppCompatActivity implements View.OnClickListener, 
                 sel--;
             }
         }
+        else {
+            btnSelectAll.setBackground(AppCompatResources.getDrawable(this, R.drawable.baseline_deselect_24));
+        }
         if (sel==0){
             LinearLayout layout1 = findViewById(R.id.titleButtons);
             layout1.setVisibility(View.VISIBLE);
             LinearLayout options = findViewById(R.id.userOptions);
             options.setVisibility(View.GONE);
             isLongPressed = false;
+            btnSelectAll.setBackground(AppCompatResources.getDrawable(this, R.drawable.baseline_select_all_24));
         }
     }
 
@@ -210,4 +215,25 @@ public class History extends AppCompatActivity implements View.OnClickListener, 
         startActivity(sendIntent);
     }
 
+    @Override
+    public void onBackPressed() {
+        if (isLongPressed){
+            LinearLayout layout = findViewById(R.id.buttonList);
+            for(int i=0;i<layout.getChildCount();i++){
+                Button button = (Button) layout.getChildAt(i);
+                if(button.isSelected()){
+                    setLayout(normal,button);
+                    button.setSelected(false);
+                    sel--;
+                }
+            }
+            LinearLayout layout1 = findViewById(R.id.titleButtons);
+            layout1.setVisibility(View.VISIBLE);
+            LinearLayout options = findViewById(R.id.userOptions);
+            options.setVisibility(View.GONE);
+            isLongPressed = false;
+        }
+        else
+            super.onBackPressed();
+    }
 }

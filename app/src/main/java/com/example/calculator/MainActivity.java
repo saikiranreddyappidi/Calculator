@@ -135,6 +135,7 @@ public class MainActivity extends AppCompatActivity {
         else
             Toast.makeText(this, "Not Saved", Toast.LENGTH_SHORT).show();
         input.setText(str.arr);
+        str.equalPressed=true;
         output.setText("0");
     }
     public void plus(View view) {

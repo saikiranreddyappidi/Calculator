@@ -134,9 +134,14 @@ public class Construct{
     char num;
     String arr="";
     BigDecimal result = new BigDecimal(0);
-    boolean flag=false,zero_flag=false;
+    boolean flag=false,zero_flag=false,equalPressed=false;
     public String extend(char num){
         this.num = num;
+        if(equalPressed){
+            if (!(num=='+'||num=='-'||num=='*'||num=='/'||num=='%'||num=='&'||num=='|'||num=='^'||num=='~'))
+                arr = "";
+            equalPressed=false;
+        }
         if(ErrorDetection(arr,num)){
             return arr;
         }
