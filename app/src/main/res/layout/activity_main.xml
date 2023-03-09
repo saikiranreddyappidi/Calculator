@@ -48,22 +48,20 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="113sp"
-        android:layout_weight="1"
-        android:orientation="vertical"
-        android:background="@drawable/output_round_corner"
+        android:layout_height="0sp"
         android:layout_marginStart="0sp"
         android:layout_marginEnd="0sp"
-        android:padding="10sp"
-        android:layout_marginBottom="5sp">
-
-
+        android:layout_marginBottom="0sp"
+        android:layout_weight="1"
+        android:background="@drawable/output_round_corner"
+        android:orientation="vertical"
+        android:padding="20sp">
 
 
         <TextView
             android:id="@+id/input"
             android:layout_width="match_parent"
-            android:layout_height="150sp"
+            android:layout_height="160sp"
             android:autoSizeMaxTextSize="48sp"
             android:autoSizeMinTextSize="24sp"
             android:autoSizeStepGranularity="2sp"
@@ -90,9 +88,8 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_height="180sp"
-        android:layout_weight="2.5"
-        android:background="@drawable/keyboard_round_corner"
+        android:layout_height="0sp"
+        android:layout_weight="1.8"
         android:baselineAligned="false"
         android:layout_margin="5sp"
         android:padding="5sp"
@@ -100,6 +97,7 @@
 
         <LinearLayout
             android:layout_width="80sp"
+            android:layout_weight="1"
             android:layout_height="match_parent"
             android:orientation="vertical">
 
@@ -203,6 +201,7 @@
         <LinearLayout
             android:layout_width="80sp"
             android:layout_height="match_parent"
+            android:layout_weight="1"
             android:orientation="vertical">
 
             <Button
@@ -302,6 +301,8 @@
         <LinearLayout
             android:layout_width="80sp"
             android:layout_height="match_parent"
+            android:layout_weight="1"
+
             android:orientation="vertical">
 
             <ImageButton
@@ -400,6 +401,8 @@
         <LinearLayout
             android:layout_width="80sp"
             android:layout_height="match_parent"
+            android:layout_weight="1"
+
             android:orientation="vertical">
 
             <Button

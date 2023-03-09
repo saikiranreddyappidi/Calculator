@@ -178,6 +178,7 @@ public class History extends AppCompatActivity implements View.OnClickListener, 
             }
         }
         Button btnSelectAll = findViewById(R.id.selectAll);
+        btnSelectAll.setBackground(AppCompatResources.getDrawable(this, R.drawable.baseline_deselect_24));
         if(selectedAll){
             for(int i=0;i<layout.getChildCount();i++){
                 Button button = (Button) layout.getChildAt(i);

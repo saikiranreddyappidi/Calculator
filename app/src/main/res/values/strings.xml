@@ -131,4 +131,7 @@
     <string name="delete">Delete</string>
     <string name="copy">copy</string>
     <string name="share">share</string>
+    <string name="title_activity_tabs">tabsActivity</string>
+    <string name="tab_text_1">Tab 1</string>
+    <string name="tab_text_2">Tab 2</string>
 </resources>
