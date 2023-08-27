@@ -14,6 +14,8 @@ import android.widget.ToggleButton;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.Objects;
+
 
 public class MainActivity extends AppCompatActivity {
     TextView input, output;
@@ -75,8 +77,8 @@ public class MainActivity extends AppCompatActivity {
         });
         try{
             Intent intent = getIntent();
-            String inp = intent.getStringExtra("inp").trim();
-            String out = intent.getStringExtra("out").trim();
+            String inp = Objects.requireNonNull(intent.getStringExtra("inp")).trim();
+            String out = Objects.requireNonNull(intent.getStringExtra("out")).trim();
             str.arr = inp;
             input.setText(inp);
             output.setText(out);

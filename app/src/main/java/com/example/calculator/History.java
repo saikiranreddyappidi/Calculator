@@ -24,6 +24,7 @@ public class History extends AppCompatActivity implements View.OnClickListener, 
     boolean isLongPressed = false,normal=true,selected=false;
     DataServer dataControl = new DataServer();
     FloatingActionButton delete;
+    Button history;
     int id=0,sel=0;
 
     @Override
@@ -51,6 +52,12 @@ public class History extends AppCompatActivity implements View.OnClickListener, 
                     Toast.makeText(History.this, "History Cleared", Toast.LENGTH_SHORT).show();
                 else
                     Toast.makeText(History.this, "History not Cleared", Toast.LENGTH_SHORT).show();
+                finish();
+            });
+            history=findViewById(R.id.history);
+            history.setOnClickListener(v -> {
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(intent);
                 finish();
             });
         }
