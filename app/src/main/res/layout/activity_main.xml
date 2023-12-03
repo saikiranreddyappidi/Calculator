@@ -52,7 +52,7 @@
         android:layout_marginStart="0sp"
         android:layout_marginEnd="0sp"
         android:layout_marginBottom="0sp"
-        android:layout_weight="1"
+        android:layout_weight="0.9"
         android:background="@drawable/output_round_corner"
         android:orientation="vertical"
         android:padding="20sp">
@@ -61,7 +61,7 @@
         <TextView
             android:id="@+id/input"
             android:layout_width="match_parent"
-            android:layout_height="160sp"
+            android:layout_height="130sp"
             android:autoSizeMaxTextSize="48sp"
             android:autoSizeMinTextSize="24sp"
             android:autoSizeStepGranularity="2sp"
