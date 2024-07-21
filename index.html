@@ -1,1 +1,144 @@
-Calculator
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <header>
+        <h1>Calculator App</h1>
+        <div class="buttons">
+            <a href="https://play.google.com" target="_blank">Play Store</a>
+            <a href="https://github.com/saikiranreddyappidi/Calculator" target="_blank">GitHub</a>
+            <a href="privacy.html" target="_blank">Privacy Policy</a>
+        </div>
+    </header>
+
+    <main>
+        <p>Revolutionize your calculations with our unique calculator app—share, save, and perform complex operations effortlessly!</p>
+
+        <div class="slideshow-container">
+            <div class="mySlides fade">
+                <div class="image-container">
+                    <img src="images/main.jpg" alt="Main screen of the calculator app">
+                    <div class="text-box">
+                        <h3>Main Screen with Arithmetic Operators</h3>
+                        <p>This screenshot showcases the main screen of our calculator app where you can perform basic arithmetic operations. It features a numpad with essential operators: addition (+), subtraction (-), multiplication (*), and division (/). As you input numbers and operators, the results are displayed in real-time. Pressing the equals sign (=) will save your calculation to the history for future reference.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mySlides fade">
+                <div class="image-container">
+                    <img src="images/history.jpg" alt="History screen showing saved calculations">
+                    <div class="text-box">
+                        <h3>History screen showing saved calculations.</h3>
+                        <p>The History Screen displays all your previous calculations. Here, you can manage your past entries by long-pressing any expression to access options such as copy, share, delete, or select all. Use this screen to quickly revisit or reuse past calculations, making it easy to track and manage your computational history.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mySlides fade">
+                <div class="image-container">
+                    <img src="images/options.jpg" alt="Options screen with additional features">
+                    <div class="text-box">
+                        <h3>Expression Selection and Sharing in History Screen</h3>
+                        <p>This screenshot highlights the features for interacting with your calculation history. You can long-press on any expression to access additional options like copying, sharing via apps like WhatsApp or Facebook, and deleting specific entries. The “select all” option allows you to perform batch actions, such as clearing multiple entries at once.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mySlides fade">
+                <div class="image-container">
+                    <img src="images/logical.jpg" alt="Using logical operators of the calculator app">
+                    <div class="text-box">
+                        <h3>Main Screen with Logical Operators</h3>
+                        <p>This view of the main screen shows the calculator's advanced mode with logical operators. By pressing the 'B' button, you toggle to logical operations including OR (|), AND (&), XOR (^), and NOT (~). These operators perform logical calculations and ignore decimal parts, making it easy to switch between basic arithmetic and logical operations as needed.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="dots">
+            <span class="dot" onclick="currentSlide(1)"></span>
+            <span class="dot" onclick="currentSlide(2)"></span>
+            <span class="dot" onclick="currentSlide(3)"></span>
+            <span class="dot" onclick="currentSlide(4)"></span>
+        </div>
+
+        <section class="description">
+            <h2>About the App</h2>
+            <p>Experience the ultimate calculator app designed for both everyday use and complex programming needs. Our app not only performs standard calculations but also supports unique operations like logical OR, AND, NOT, and XOR, making it an essential tool for programmers and tech enthusiasts.</p>
+            <p>Share your calculations easily through any messaging app with automatic parsing, copy calculations for quick reuse, and enjoy the added security of saving your calculation history locally on your device. Plus, you can delete history anytime for enhanced privacy.</p>
+        </section>
+
+        <section class="details">
+            <h2>App Description and User Manual</h2>
+            <h3>Overview</h3>
+            <p>This calculator app is designed to perform both basic arithmetic and advanced logical operations, making it a versatile tool for everyday use and specialized tasks. The intuitive interface ensures that users can quickly perform calculations and manage their history with ease.</p>
+
+            <h3>Main Features</h3>
+            <ul>
+                <li><strong>Basic Arithmetic Operations:</strong> Supports addition (+), subtraction (-), multiplication (*), and division (/).</li>
+                <li><strong>Immediate Results:</strong> As users type numbers and operators, the app dynamically displays the results based on the current input.</li>
+                <li><strong>History Management:</strong> All completed equations are saved to the history, accessible by pressing the "HISTORY" button.</li>
+                <li><strong>Logical Operations:</strong> Toggle between arithmetic and logical operations using the 'B' button. Logical operators include OR (|), AND (&), XOR (^), and NOT (~). Note that logical operations ignore decimal parts.</li>
+                <li><strong>Percentage Calculation:</strong> A dedicated % button allows for easy percentage calculations.</li>
+                <li><strong>History Interaction:</strong> Users can copy, share, delete individual entries, or select all history items for batch actions.</li>
+                <li><strong>Privacy:</strong> Users can clear their entire calculation history using the delete button at the bottom right corner.</li>
+            </ul>
+
+            <h3>Detailed Description</h3>
+            <p>When you open the calculator app, you will see a numpad with basic operators (+, -, *, /) and the equals sign (=). As you start typing numbers, the app immediately shows the results of the arithmetic operations based on your input. Pressing the equals sign (=) will save the current equation to the history.</p>
+            <p>At the bottom left corner, there's a button with the symbol 'B'. Pressing this button toggles the operators to logical operators: OR (|), AND (&), XOR (^), and NOT (~). These operators perform logical operations on the given input values, ignoring any decimal parts. Arithmetic operations, however, will consider floating numbers.</p>
+            <p>At the top of the screen, there are options like "HISTORY," "MORE," and "FINANCE." The "HISTORY" option lets you view all your previous calculations. The "MORE" and "FINANCE" options are still in beta versions.</p>
+            <p>In the history view, you can long-press any expression to see options like copy, share, delete, and select all. You can copy an expression, share it through apps like WhatsApp, Facebook, or Messenger, delete a specific expression, or select all expressions for batch actions. There's also a delete button at the bottom right corner to clear all history entries.</p>
+
+            <h3>Usage Instructions</h3>
+            <ul>
+                <li><strong>Performing Calculations:</strong>
+                    <ul>
+                        <li>Open the app to see the numpad and basic operators.</li>
+                        <li>Start typing numbers and operators to see real-time results.</li>
+                        <li>Press the equals sign (=) to save the equation to the history.</li>
+                    </ul>
+                </li>
+                <li><strong>Switching to Logical Operations:</strong>
+                    <ul>
+                        <li>Press the 'B' button to switch to logical operators.</li>
+                        <li>Use | for OR, & for AND, ^ for XOR, and ~ for NOT.</li>
+                        <li>Note: Logical operations ignore decimal values.</li>
+                    </ul>
+                </li>
+                <li><strong>Viewing and Managing History:</strong>
+                    <ul>
+                        <li>Press the "HISTORY" button to view past calculations.</li>
+                        <li>Long-press an expression to copy, share, delete, or select all.</li>
+                        <li>Use the delete button at the bottom right to clear all history.</li>
+                    </ul>
+                </li>
+                <li><strong>Using Percentage Calculations:</strong>
+                    <ul>
+                        <li>Press the % button to perform percentage calculations.</li>
+                    </ul>
+                </li>
+            </ul>
+
+            <h3>Note</h3>
+            <p>While we strive to provide a seamless and error-free experience, some bugs or issues may occur. We are not responsible for any issues caused by the app's malfunction. However, we are committed to fixing any reported bugs as soon as possible. Please report any problems to us for a quick resolution.</p>
+
+            <p>Enjoy using your feature-rich calculator app!</p>
+        </section>
+
+        <section class="open-source">
+            <h2>Open Source Collaboration</h2>
+            <p>This is an open-source app, and we welcome contributions from the community. If you're interested in getting involved or collaborating on this project, visit our <a href="https://github.com" target="_blank">GitHub page</a>.</p>
+        </section>
+    </main>
+
+    <script src="index.js"></script>
+</body>
+</html>
