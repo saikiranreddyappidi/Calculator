@@ -1,4 +1,4 @@
-package com.example.calculator;
+package tech.saikiranappidi.calculator;
 
 import org.junit.Test;
 

@@ -3,11 +3,11 @@ plugins {
 }
 
 android {
-    namespace 'com.example.calculator'
+    namespace 'tech.saikiranappidi.calculator'
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.example.calculator"
+        applicationId "tech.saikiranappidi.calculator"
         minSdk 26
         targetSdk 33
         versionCode 1
