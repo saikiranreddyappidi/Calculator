@@ -23,6 +23,8 @@ public class MainActivity extends AppCompatActivity {
     Construct str = new Construct();
     boolean toggleState = false;
     Button history;
+    Button more;
+    Button finance;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,6 +77,15 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(MainActivity.this, History.class);
             startActivity(intent);
         });
+        more = findViewById(R.id.more);
+        more.setOnClickListener(v -> {
+            Toast.makeText(MainActivity.this, "Coming Soon...", Toast.LENGTH_SHORT).show();
+        });
+        finance = findViewById(R.id.finance);
+        finance.setOnClickListener(v -> {
+            Toast.makeText(MainActivity.this, "Coming Soon...", Toast.LENGTH_SHORT).show();
+        });
+
         try{
             Intent intent = getIntent();
             String inp = Objects.requireNonNull(intent.getStringExtra("inp")).trim();
